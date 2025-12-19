@@ -1,0 +1,25 @@
+using System;
+namespace Day2DemoConsole;
+
+public class Admission_Eligibility
+{
+public static void Run()
+    {
+        Console.WriteLine("Enter Math: ");
+        int math=int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter Phy: ");
+        int phy=int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter Chem: ");
+        int chem=int.Parse(Console.ReadLine());
+
+        int total=math+phy+chem;
+        if((math>=65 && phy>=55 && chem>=50) && (total>=180 || math + phy >= 140))
+        {
+            Console.WriteLine("Eligible");
+        }
+        else
+        {
+            Console.WriteLine("Not Eligible");
+        }
+    }
+}

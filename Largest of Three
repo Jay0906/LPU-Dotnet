@@ -1,0 +1,24 @@
+using System;
+using System.Runtime.CompilerServices;
+namespace Day2DemoConsole;
+
+public class LargestofThree
+{
+    public static void Run()
+    {
+        Console.Write("Enter frist number: ");
+        int a=int.Parse(Console.ReadLine());
+        Console.Write("Enter second number: ");
+        int b=int.Parse(Console.ReadLine());
+        Console.Write("Enter third number: ");
+        int c=int.Parse(Console.ReadLine());
+
+        if(a>b && b>c)
+            Console.WriteLine("Max: "+a);
+        if(b>a && b>c)
+            Console.WriteLine("Max: "+b);
+        if(c>b && c>a)
+            Console.WriteLine("Max: "+c);
+        
+    }
+}

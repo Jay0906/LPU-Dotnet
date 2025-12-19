@@ -1,0 +1,24 @@
+using System;
+namespace Day2DemoConsole;
+
+public class HeightCategory
+{
+    public static void Run()
+    {
+        Console.Write("Enter your Height: ");
+        if(int.TryParse(Console.ReadLine(), out int a)){
+            if (a < 150)
+                Console.WriteLine("Dwarf");
+            else if(a < 165)
+                Console.WriteLine("Average");
+            else if(a < 190)
+                Console.WriteLine("Tall");
+            else
+                Console.WriteLine("Abnormal");
+        }
+        else
+        {
+            Console.WriteLine("Invalid Input");
+        }
+    }
+}

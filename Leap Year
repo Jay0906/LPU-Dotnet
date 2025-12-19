@@ -1,0 +1,19 @@
+using System;
+namespace Day2DemoConsole;
+
+public class Leap_Year
+{
+    public static void Run()
+    {
+        Console.Write("Enter year: ");
+        int a=int.Parse(Console.ReadLine());
+        if(a%400==0 || (a%4==0 && a % 100 != 0))
+        {
+            Console.WriteLine(a+" is Leap Year");
+        }
+        else
+        {
+            Console.WriteLine(a+" is not Leap Year");
+        }
+    }
+}

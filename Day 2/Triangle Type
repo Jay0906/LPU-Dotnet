@@ -1,0 +1,38 @@
+using System;
+
+namespace Day2DemoConsole;
+
+public class TriangleType
+{
+    public static void Run()
+    {
+        Console.Write("Enter s1: ");
+        int s1 = int.Parse(Console.ReadLine());
+
+        Console.Write("Enter s2: ");
+        int s2 = int.Parse(Console.ReadLine());
+
+        Console.Write("Enter s3: ");
+        int s3 = int.Parse(Console.ReadLine());
+
+        if (s1 + s2 > s3 && s1 + s3 > s2 && s2 + s3 > s1)
+        {
+            if (s1 == s2 && s2 == s3)
+            {
+                Console.WriteLine("Equilateral Triangle");
+            }
+            else if (s1 == s2 || s2 == s3 || s3 == s1)
+            {
+                Console.WriteLine("Isosceles Triangle");
+            }
+            else
+            {
+                Console.WriteLine("Scalene Triangle");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Not a valid Triangle");
+        }
+    }
+}

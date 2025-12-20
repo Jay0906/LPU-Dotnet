@@ -1,0 +1,25 @@
+using System;
+namespace Day2DemoConsole;
+
+public class VowelOrConsonent
+{
+    public static void Run()
+    {
+        Console.Write("Enter the Character: ");
+        char c=char.ToLower(Console.ReadLine()[0]);
+
+        switch (c)
+        {
+            case 'a':
+            case 'e':
+            case 'i':
+            case 'o':
+            case 'u':
+                Console.WriteLine("Vowel");
+                break;
+            default:
+                Console.WriteLine("Consonent");
+                break;
+        }
+    }
+}

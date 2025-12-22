@@ -1,0 +1,60 @@
+using System;
+
+namespace Day2DemoConsole;
+
+public class ValidDateCheck
+{
+    public static void Run()
+    {
+        Console.Write("Enter Day: ");
+        int d=int.Parse(Console.ReadLine()!);
+
+        Console.Write("Enter Month: ");
+        int m=int.Parse(Console.ReadLine()!);
+
+        Console.Write("Enter Year: ");
+        int y=int.Parse(Console.ReadLine()!);
+
+        bool isLeap=false;
+        if((y%400==0) || (y%4==0 && y % 4 != 0))
+        {
+            isLeap=true;
+        }
+
+        bool isValidYear=true;
+        if(y<1 || m<1 || m>12 || d < 1)
+        {
+            isValidYear=false;
+        }else if (m == 2)
+        {
+            if(isLeap && d > 28)
+            {
+                isValidYear=false;
+            }else if(!isLeap && d > 29)
+            {
+                isValidYear=false;
+            }
+        }else if(m==4 || m==6 || m==9 || m == 11)
+        {
+            if (d > 30)
+            {
+                isValidYear=false;
+            }
+        }
+        else
+        {
+            if (d > 31)
+            {
+                isValidYear=false;
+            }
+        }
+        if (isValidYear)
+        {
+            Console.WriteLine("Valid Year");
+        }
+        else
+        {
+            Console.WriteLine("Not a Valid Year");
+        }
+    }
+}

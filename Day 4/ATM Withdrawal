@@ -1,0 +1,22 @@
+using System;
+
+namespace Day2DemoConsole;
+
+public class ATMWithdrawal
+{
+    public static void Run()
+    {
+        Console.Write("Enter no. ");
+        int n=int.Parse(Console.ReadLine()!);
+        if (n == 1)
+        {
+            Console.WriteLine("Card Inserted");
+        }else if (n == 2)
+        {
+            Console.WriteLine("Pin Valid");
+        }else if (n == 3)
+        {
+            Console.WriteLine("Balance Sufficient");
+        }
+    }
+}

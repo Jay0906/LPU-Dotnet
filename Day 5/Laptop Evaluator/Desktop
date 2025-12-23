@@ -1,0 +1,21 @@
+using System;
+
+namespace LaptopEvaluator;
+
+public class Desktop:Computer
+{
+    public int MoniterSize {get; set;}
+    public int PowerSupplyVolt {get; set;}
+
+    public double DesktopPriceCalculation()
+    {
+        int processorPrice=0;
+
+        if(processor=="i3") processorPrice=1500;
+        else if(processor=="i5") processorPrice=3000;
+        else if(processor=="i7") processorPrice=4500;
+
+        double price= processorPrice+ (ramsize*200) + (HarddiskSize*1500) + (GraphicCard*2500) + (PowerSupplyVolt*20) + (MoniterSize*250);
+        return price;
+    }
+}

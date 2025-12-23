@@ -1,0 +1,52 @@
+using System;
+namespace CakeWorld;
+
+public class Cake
+{
+    public string Flavour {get; set;}
+    public int QuantityInKG {get; set;}
+    public double PricePerKG {get; set;}
+
+    public bool CakeOrder()
+    {
+        if(Flavour!="Vanilla" && Flavour!="Red Velvet" && Flavour != "Choclate")
+        {
+            throw new InvalidFlavourException("Flavour not available. Please select the available Flavour");
+        }
+        if (QuantityInKG < 1)
+        {
+            throw new Exception("Quantity must be greater than zero");
+        }
+        return true;
+    }
+
+    public double CalculatePrice()
+    {
+        double TotalPrice=QuantityInKG*PricePerKG;
+        int discount=0;
+
+        if(Flavour=="Vanilla") discount=3;
+        else if(Flavour=="Choclate") discount=5;
+        else if(Flavour=="Red Velvet") discount=10;
+
+        double DiscountPrice=TotalPrice-(TotalPrice*discount/100);
+        return DiscountPrice;
+    }
+}
+
+
+[Serializable]
+internal class InvalidFlavourException : Exception
+{
+    public InvalidFlavourException()
+    {
+    }
+
+    public InvalidFlavourException(string? message) : base(message)
+    {
+    }
+
+    public InvalidFlavourException(string? message, Exception? innerException) : base(message, innerException)
+    {
+    }
+}

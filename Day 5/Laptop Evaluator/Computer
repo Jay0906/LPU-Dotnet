@@ -1,0 +1,10 @@
+using System;
+namespace LaptopEvaluator;
+
+public class Computer
+{
+        public string processor {get; set;}
+        public int ramsize{ get; set;}
+        public int HarddiskSize{get; set;}
+        public int GraphicCard{get; set;}
+}

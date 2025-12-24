@@ -1,0 +1,35 @@
+using System;
+namespace LibraryManagementSystem;
+
+public class Book
+{
+
+    public string Title {get; set;}
+    public string Author {get; set;}
+    public int NumPages {get; set;}
+    public DateTime DueDate {get; set;}
+    public DateTime ReturnDate {get; set;}
+
+    public Book(string Title, string Author, int NumPages, DateTime DueDate, DateTime ReturnDate)
+    {
+        this.Title=Title;
+        this.Author=Author;
+        this.NumPages=NumPages;
+        this.DueDate=DueDate;
+        this.ReturnDate=ReturnDate;
+    }
+
+    public double AveragePagesReadPerDay( int daysToRead)
+    {
+        double Avg=NumPages/daysToRead;
+        return Avg;
+    }
+
+    public double CalculateLateFee(double dailyLateFeeRate)
+    {
+        int NumOfDaysLate=(ReturnDate-DueDate).Days;
+        return (double) NumOfDaysLate*dailyLateFeeRate;
+
+    }
+
+}

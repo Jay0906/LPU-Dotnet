@@ -1,0 +1,64 @@
+using System;
+using System.Diagnostics.Contracts;
+using System.Globalization;
+using System.Runtime.InteropServices;
+
+namespace CabFare;
+
+public class CabDetails: Cab
+{
+    public bool ValidateBookingID()
+    {
+        if (BookingID.Length != 6)
+        {
+            return false;
+        }
+
+        if (!BookingID.StartsWith("AC@"))
+        {
+            return false;
+        }
+
+        string subString=BookingID.Substring(3);
+
+        if (subString.Length != 3)
+        {
+            return false;
+        }
+
+        foreach(char c in subString)
+        {
+            if (!char.IsDigit(c))
+            {
+                return false;
+            }
+            
+        }
+        if(CabType!="Hatchback" && CabType!="SUV" && CabType != "Sedan")
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public double CalculateFareAmount()
+    {
+        double WaitingCharge=Math.Sqrt(WaitingTime);
+        int PricePerKM=0;
+
+        if (CabType == "Hatchback")
+        {
+            PricePerKM=10;
+        }else if (CabType== "Sedan")
+        {
+            PricePerKM=20;
+        }else if (CabType == "SUV")
+        {
+            PricePerKM=30;
+        }
+
+        double Fare=(Distance*PricePerKM)+WaitingCharge;
+        return Fare;
+    }
+}

@@ -1,0 +1,11 @@
+using System;
+namespace CabFare;
+
+public class Cab
+{
+    public string BookingID {get; set;}
+    public string CabType {get; set;}
+    public int Distance {get; set;}
+    public int WaitingTime {get; set;}
+
+}

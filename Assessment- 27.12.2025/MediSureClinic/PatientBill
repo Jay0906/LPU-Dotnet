@@ -1,0 +1,41 @@
+using System;
+namespace MediSureClinic;
+
+public class PatientBill
+{
+        public string BillID {get;  set;}
+        public string PatientName { get; set; }
+        public bool HasInsurance { get; set; }
+        public double ConsultationFee { get; set; }
+        public double LabCharges { get; set; }
+        public double MedicineCharges {get; set;}
+
+        public double GrossAmount()
+        {
+            double grossAmount=ConsultationFee+LabCharges+MedicineCharges;
+            return grossAmount;
+        }
+        
+        public double DiscountAmount()
+        {
+            if(HasInsurance){
+                double discountAmount=(ConsultationFee+LabCharges+MedicineCharges)*0.10;
+                return discountAmount;
+            }
+            return 0; 
+        }
+
+        public double FinalPayable()
+        {
+            if(HasInsurance){
+                double finalPayable=(ConsultationFee+LabCharges+MedicineCharges)-((ConsultationFee+LabCharges+MedicineCharges)*0.10);
+                return finalPayable;
+            }
+            else
+            {
+                double finalPayable=(ConsultationFee+LabCharges+MedicineCharges);
+                return finalPayable;
+            }
+        }
+
+}

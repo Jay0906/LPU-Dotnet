@@ -1,5 +1,5 @@
 using System;
-using MediSureClinic;
+namespace MediSureClinic;
 
 public class Program
 {

@@ -1,0 +1,84 @@
+using System;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Principal;
+namespace LINQDemo
+{
+    public class Program
+    {
+        public static void Main(String[] args)
+        {
+            Console.Write("Enter the no. of elements in Array: ");
+            int n=int.Parse(Console.ReadLine()!);
+
+            int[] arr=new int[n];
+            for(int i = 0; i < n; i++)
+            {
+                arr[i]=int.Parse(Console.ReadLine()!);
+            }
+
+            //Where Function
+            var res=arr.Where(n=>n>10);
+            
+            //Select Funciton
+            // var res=arr.Select(n=>n%2);
+            
+            // //OrderBy Function
+            // var res=arr.OrderBy(n=>n);
+
+            // //OrderByDescending Function
+            // var res=arr.OrderByDescending(n=>n);
+
+            // //ThenBy Function
+            // var res=arr.OrderBy(e=>e.Id).ThenBy(e=>e.Name);
+
+            // //GroupBy Function
+            // var res=arr.GroupBy(n=>n%10);
+
+            // //Count Function
+            // var res=arr.Count(n=>n%10);
+
+            // //Sum Function
+            // var res=arr.Sum();
+
+            // //Min Function
+            // var res=arr.Min();
+
+            // //Max Function
+            // var res=arr.Max();
+
+            // //Average Function
+            // var res=arr.Average();
+
+            // //First Function- returns the first element if found or throws an Error
+            // var res=arr.First();
+
+            // //FirstOrDefault Function- returns the First element if found, or returns the Default value
+            // var res=arr.FirstOrDefault();
+
+            // //Any Function - checks if any of the value meets the condition - Boolean Return Value
+            // var res=arr.Any(n=>n%10);
+
+            // //All Function - checks if all the functions meets the condition - Boolean Return Value
+            // var res=arr.All(n=> n%10);
+
+            // //Distinct Function - removes all the duplicates from the collection
+            // var res=arr.Distinct();
+
+            // //Take Function - Takes the first N elements
+            // var res=arr.Take(4);
+
+            // //Skip Function
+            // var res=arr.Skip(2);
+
+            // //ToList Function - Converts the results to a List immediately - Immediate Execution
+            // var res=arr.Where(n=>n>2).ToList();
+
+            Console.WriteLine("Result: ");
+            foreach(var item in res)
+            {
+                Console.Write(item+" ");
+            }
+        }
+    }
+}

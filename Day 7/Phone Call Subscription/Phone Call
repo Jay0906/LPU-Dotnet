@@ -1,0 +1,32 @@
+using System;
+
+namespace PhoneCallSubscription;
+
+public class PhoneCall
+{
+    public delegate void Notify();
+    public event Notify PhoneCallEvent;
+    public string Message { get; set; }
+    public void OnSubscribe()
+    {
+        Message="Subscribed to Call";
+    }
+    public void OnUnSubscribe()
+    {
+        Message="UnSubscribed to Call";
+    }
+    public void MakePhoneCall(bool notify)
+    {
+        PhoneCallEvent=null;
+        if (notify)
+        {
+            PhoneCallEvent+=OnSubscribe;
+        }
+        else
+        {
+            PhoneCallEvent+=OnUnSubscribe;
+        }
+        PhoneCallEvent?.Invoke();
+    }
+
+}

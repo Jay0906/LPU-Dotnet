@@ -1,0 +1,45 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+namespace KhataSystem;
+
+public class Khata
+{
+    Dictionary<string,int> record;
+    public Khata(Dictionary<string, int> record)
+    {
+        this.record=record;
+    }
+
+    public int getTotal()
+    {
+        int total=0;
+        foreach(var item in record)
+        {
+            total+=item.Value;
+        }
+        return total;
+    }
+
+    public int repeatedCounts()
+    {
+        //HashSet<int> seen=new HashSet<int>();
+        int count=0;
+        ArrayList rep=new ArrayList();
+        foreach(var item in record)
+        {
+            int amount=item.Value;
+            if (rep.Contains(amount))
+            {
+                count+=1;
+            }
+            else
+            {
+                rep.Add(amount);
+            }
+        }
+
+        return count;
+    }
+
+}

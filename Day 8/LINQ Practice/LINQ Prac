@@ -1,0 +1,122 @@
+using System;
+using Microsoft.VisualBasic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Net.WebSockets;
+
+namespace LINQDemo;
+
+public class LINQPrac
+{
+    public static void Main()
+    {
+    List<Student> students = new List<Student>  
+    {
+        new Student { Id = 1, Name = "Alok", Age = 20, Marks = 85, City = "Delhi" },
+        new Student { Id = 2, Name = "Riya", Age = 22, Marks = 72, City = "Mumbai" },
+        new Student { Id = 3, Name = "Rajat", Age = 19, Marks = 78, City = "Delhi" },
+        new Student { Id = 4, Name = "Nitya", Age = 21, Marks = 88, City = "Pune" },
+        new Student { Id = 5, Name = "Raman", Age = 23, Marks = 65, City = "Bangalore" },
+        new Student { Id = 6, Name = "Smita", Age = 22, Marks = 92, City = "Mumbai" },
+        new Student { Id = 7, Name = "Saket", Age = 19, Marks = 58, City = "Delhi" },
+        new Student { Id = 8, Name = "Prachi", Age = 21, Marks = 88, City = "Pune" },
+        new Student { Id = 9, Name = "Naresh", Age = 23, Marks = 95, City = "Bangalore" },
+        new Student { Id = 10, Name = "Aarti", Age = 22, Marks = 84, City = "Mumbai" },
+        new Student { Id = 11, Name = "Vartika", Age = 19, Marks = 78, City = "Delhi" },
+        new Student { Id = 12, Name = "Manan", Age = 21, Marks = 88, City = "Pune" },
+        new Student { Id = 13, Name = "Mahesh", Age = 25, Marks = 77, City = "Chennai" },
+        new Student { Id = 14, Name = "Ranjeet", Age = 22, Marks = 96, City = "Mumbai" },
+        new Student { Id = 15, Name = "Kajal", Age = 19, Marks = 78, City = "Chennai" }
+    };
+        //-------------EASY---------------
+
+        //Students whose age is more than 20
+        // var res=students.Where(n=>n.Age>20);
+        // foreach(var item in res)
+        // {
+        //     Console.Write($"{item.Name} - {item.Age} - {item.City}\n");
+        // }
+
+        //Get only Student names
+        // var res=students.Select(n=>n.Name);
+        // foreach(var item in res)
+        // {
+        //     Console.Write($"Name: {item}\n");
+        // }
+
+        //Count of Students from Mumbai
+        // var res=students.Where(n=>n.City.Equals("Mumbai")).Count();
+        
+        // Console.Write($"Count of Student from Mumbai: {res}");
+
+        //Check if any Student has marks > 90
+        // var res=students.Any(n=>n.Marks>90);
+        // Console.WriteLine($"Are there students who have marks > 90 : {res}");
+
+        //First Student from Delhi
+        // var res=students.First(n=>n.City.Equals("Delhi"));
+        // Console.WriteLine($"The First Student from Delhi: {res.Name}");
+
+        //-------------- MEDIUM -----------------
+
+        //students with marks=85 and age <22
+        // var res=students.Where(n=>n.Marks>85 && n.Age<22);
+        // foreach(var item in res)
+        // {
+        //     Console.WriteLine($"Students with Marks>=85 && Age < 22: {item.Name}");
+        // }
+
+        //Sort Student marks Descending
+        // var res=students.OrderByDescending(n=>n.Marks);
+        // foreach(var item in res)
+        // {
+        //     Console.WriteLine($"{item.Name} - {item.Marks}");
+        // }
+
+        //Student with Highest Marks
+        // var res=students.Select(n=>n.Marks).Max();
+        // Console.WriteLine($"Student with Highest marks: {res}");
+
+        //Group Students by City
+        // var res=students.GroupBy(n=>n.City);
+        // foreach(var item in res)
+        // {
+        //     Console.WriteLine($"City: {item.Key}");
+         
+        //     foreach(var student in item)
+        //     {
+        //         Console.WriteLine($"\t{student.Name} - {student.Age}");
+        //     }
+        // }
+
+        // //Get Average of All Students
+        // var res=students.Select(n=>n.Marks);
+        // Console.WriteLine(res.Average());
+
+        //Get city-wise student count
+        // var res=students.GroupBy(n=>n.City);
+        // foreach(var item in res)
+        // {
+        //     System.Console.WriteLine($"City : {item.Key}");
+
+        //     int count=0;
+        //     foreach(var item1 in item)
+        //     {
+        //         count+=1;
+        //     }
+        //     System.Console.WriteLine($"Number of Students in {item.Key} City: {count}");
+        // }
+        
+        //Top 2 student by Marks
+        // var res=students.OrderByDescending(n=>n.Marks).Take(2);
+        // System.Console.WriteLine("Top 2 Students are: ");
+        // foreach(var item in res)
+        // {
+        //     System.Console.WriteLine($"{item.Name} - {item.Marks} ");
+        // }
+
+        //Checks if all the students are > 18
+        var res=students.All(n=>n.Age>18);
+        System.Console.WriteLine($"Are all students age > 18: {res}");
+    }
+}

@@ -1,0 +1,20 @@
+// /*Create an async method PrintMessageAsync(string msg) that waits 1 second and prints the message.
+// Call it from Main.
+// */
+
+// using System;
+// using System.Threading.Tasks;
+// namespace AsychPrac;
+
+// public class Prac2
+// {
+//     static async Task Main()
+//     {
+//         await PrintMessageAsych("Task Completed");
+//     }
+//     static async Task PrintMessageAsych(string msg)
+//     {
+//         await Task.Delay(1000);
+//         System.Console.WriteLine(msg);
+//     }
+// }

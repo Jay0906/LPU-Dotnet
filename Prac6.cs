@@ -1,0 +1,23 @@
+/*
+Start an async task that waits 5 seconds.
+While it is waiting, print:
+Doing other work...
+Then await the task.
+*/
+
+
+using System;
+using System.Threading.Tasks;
+namespace AsychPrac;
+
+public class Prac6
+{
+    public static async Task method()
+    {
+        Task longtask=Task.Delay(5000);
+        System.Console.WriteLine("Doing Other Work");
+
+        await longtask;
+        System.Console.WriteLine("Task Completed");
+    }
+}

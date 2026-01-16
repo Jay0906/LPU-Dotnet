@@ -1,0 +1,17 @@
+/*
+Start an async task but do not await it immediately.
+Do some other console output first, then await it.
+*/
+
+using System;
+using System.Threading.Tasks;
+namespace AsychPrac;
+
+public class Prac10
+{
+    public static async Task method()
+    {
+        await Task.Delay(2000);
+        System.Console.WriteLine("Asych Task Done");
+    }
+}

@@ -1,0 +1,51 @@
+using System;
+using System.Linq;
+namespace FindItems{
+public class itemsApp{
+public Dictionary<string,long> itemSales=new Dictionary<string,long>(){
+	{"Chair",100},
+	{"Table",140},
+	{"Sofa",120},
+	{"Couch",80},
+	{"Curtains",90},
+	{"Pillow",200},
+	{"Bed",50},
+	{"Covers",170},
+	{"Cushion",110},
+	{"Door",30}
+};
+
+	public SortedDictionary<string,long> FinditemDetails(long soldCount){
+		
+		SortedDictionary<string,long> res=new SortedDictionary<string,long>();
+		foreach(var item in itemSales){
+			if(item.Value >= soldCount){
+				res.Add(item.Key,item.Value);
+			}
+		}
+	return res;
+}
+
+	public List<string> FindMinandMaxSoldItems(){
+		List<string> res=new List<string>();
+		
+		long min=itemSales.Min(n=>n.Value);
+		long max=itemSales.Max(n=>n.Value);
+
+		string minName=itemSales.First(n=>n.Value==min).Key;
+		string maxName=itemSales.First(n=>n.Value==max).Key;
+		
+		res.Add(minName);
+		res.Add(maxName);
+		
+		return res;
+		
+}
+
+	    public Dictionary<string,long> SortbyCount(){
+		
+		    Dictionary<string,long> res=itemSales.OrderByDescending(n=>n.Value).ToDictionary(n=>n.Key,n=>n.Value);
+		    return res;
+        }
+    }
+}

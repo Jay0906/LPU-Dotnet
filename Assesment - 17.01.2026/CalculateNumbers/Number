@@ -1,0 +1,53 @@
+using System;
+
+namespace CalculateNumbers;
+
+public class Number
+{
+    List<int> NumberList=new List<int>();
+    public void AddNumbers(int Number)
+    {
+        NumberList.Add(Number);
+    }
+
+    public double GetGPAScored()
+    {
+        if (NumberList.Count==0) return -1;
+        double total=0.00;
+        foreach(var item in NumberList)
+        {
+            total+=item*3;
+        }
+        double GPA=total/(NumberList.Count()*3);
+        return GPA;
+    }
+
+    public char GetGradeScored(double gpa)
+    {
+        if (gpa == 10)
+        {
+            return 'O';
+        }
+        else if(gpa>=9 && gpa < 10)
+        {
+            return 'A';
+        }
+        else if(gpa>=8 && gpa < 9)
+        {
+            return 'B';
+        }
+        else if(gpa>=7 && gpa < 8)
+        {
+            return 'C';
+        }
+        else if(gpa>=6 && gpa < 7)
+        {
+            return 'D';
+        }
+        else if(gpa>=5 && gpa < 6)
+        {
+            return 'E';
+        }
+        return '\0';
+    }
+}

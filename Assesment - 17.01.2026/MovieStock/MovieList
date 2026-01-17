@@ -1,0 +1,40 @@
+using System;
+using System.Linq;
+using System.Runtime.CompilerServices;
+namespace MovieStock;
+
+public class MoviesList
+{
+    public static List<Movie> MovieList=new List<Movie>();
+    public void AddMovie(string MovieDetails)
+    {
+        string[] details=MovieDetails.Split(",");
+        Movie mv=new Movie
+        {
+            Title=details[0],
+            Artist=details[1],
+            Genre=details[2],
+            Ratings=int.Parse(details[3])
+        };
+        MovieList.Add(mv);
+    }
+
+    public List<Movie> ViewMoviesByGenre(string genre)
+    {
+        List<Movie> mv= new List<Movie>();
+        foreach(var item in MovieList)
+        {
+            if (item.Genre.Equals(genre))
+            {
+                mv.Add(item);
+            }
+        }
+        return mv;
+    }
+
+    public List<Movie> ViewMoviesByRatings()
+    {
+        List<Movie> order=MovieList.OrderByDescending(n=>n.Ratings).ToList();
+        return order;
+    }
+}

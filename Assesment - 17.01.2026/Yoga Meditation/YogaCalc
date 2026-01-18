@@ -1,0 +1,66 @@
+using System;
+using System.Linq;
+using System.Collections;
+using System.Net.Http.Headers;
+using Microsoft.VisualBasic;
+
+namespace YogaMeditation;
+
+public class YogaCalc
+{
+    public static ArrayList MemberList=new ArrayList();
+    public void AddYogaMember(int memberid,int age,double weight,double height,string goal)
+    {
+        MeditationCenter mc=new MeditationCenter()
+        {
+            MemberID=memberid,
+            Age=age,
+            Weight=weight,
+            Height=height,
+            Goal=goal
+        };
+        MemberList.Add(mc);
+    }
+
+    public double CalculateBMI(int memberid)
+    {
+        foreach(MeditationCenter item in MemberList)
+        {
+            if(item.MemberID==memberid){
+                double BMI=item.Weight/(item.Height*item.Height);
+                item.BMI=BMI;
+                BMI=Math.Round(BMI,2);
+                return BMI;
+            }
+        }
+        return -1;
+    }
+
+    public int CalculateYogaFee(int memberid)
+    {
+        foreach(MeditationCenter item in MemberList)
+        {
+            if(item.Goal.Equals("Weight Loss"))
+            {
+                if(item.BMI>=25 && item.BMI < 30)
+                {
+                    return 2000;
+                }
+                else if(item.BMI>=30 && item.BMI < 35)
+                {
+                    return 2500;
+                }
+                else if (item.BMI >= 35)
+                {
+                    return 3000;
+                }
+            }
+            else if(item.Goal.Equals("Weight Gain"))
+            {
+                return 2500;
+            }
+        }
+        return -1;
+    }
+
+}

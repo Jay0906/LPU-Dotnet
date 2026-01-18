@@ -6,11 +6,11 @@ namespace YogaMeditation
         public static void Main()
         {
             YogaCalc yc=new YogaCalc();
-            yc.AddYogaMember(121,23,67,70,"Weight Gain");
-            yc.AddYogaMember(122,35,90,67,"Weight Loss");
-            yc.AddYogaMember(123,27,56,65,"Weight Gain");
-            yc.AddYogaMember(124,32,80,60,"Weight Loss");
-            yc.AddYogaMember(125,19,100,62,"Weight Loss");
+            yc.AddYogaMember(121,23,67,1.67,"Weight Gain");
+            yc.AddYogaMember(122,35,90,1.72,"Weight Loss");
+            yc.AddYogaMember(123,27,56,1.56,"Weight Gain");
+            yc.AddYogaMember(124,32,80,1.45,"Weight Loss");
+            yc.AddYogaMember(125,19,100,1.58,"Weight Loss");
 
             System.Console.Write("Enter MemberID for BMI: ");
             int memid=int.Parse(Console.ReadLine()!);

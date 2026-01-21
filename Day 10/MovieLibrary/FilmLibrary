@@ -1,0 +1,56 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace MovieLibrary;
+public interface IFilmLibrary
+{
+    void AddFilm(IFilm film);
+    void RemoveFilm(string title);
+    List<IFilm> GetFilms();
+    List<IFilm> SearchFilms(string query);
+    int GetTotalFilmCount();
+}
+public class FilmLibrary : IFilmLibrary
+{
+    private List<Film> filmlist=null;
+
+    public FilmLibrary()
+    {        
+        filmlist=new List<Film>();
+    }
+
+    public void AddFilm(IFilm film)
+    {
+        filmlist.Add((Film)film);
+    }
+
+    public void RemoveFilm(string title)
+    {
+        Film filmtoremove=filmlist.FirstOrDefault(n=>n.Title.Equals(title,StringComparison.OrdinalIgnoreCase));
+        if (filmtoremove != null)
+        {
+            filmlist.Remove(filmtoremove);
+        }
+    }
+
+    public List<IFilm> GetFilms()
+    {
+        return filmlist.Cast<IFilm>().ToList();
+    }
+
+    public List<IFilm> SearchFilms(string query)
+    {
+        return filmlist.Where(
+            n=>n.Title.Contains(query,StringComparison.InvariantCultureIgnoreCase) || 
+            n.Director.Contains(query,StringComparison.OrdinalIgnoreCase))
+            .Cast<IFilm>().ToList();
+
+    }
+
+    public int GetTotalFilmCount()
+    {
+        return filmlist.Count();
+    }
+
+}

@@ -1,0 +1,23 @@
+using System;
+
+namespace MovieLibrary;
+
+public interface IFilm
+{
+    string Title{get; set;}
+    string Director{get; set;}
+    int Year{get; set;}
+}
+public class Film : IFilm
+{
+    public string Title { get; set; }
+    public string Director { get; set; }
+    public int  Year { get; set; }
+
+    public Film(string Title,string Director, int Year)
+    {
+        this.Title=Title;
+        this.Director=Director;
+        this.Year=Year;
+    }
+}

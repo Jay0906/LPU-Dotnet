@@ -1,0 +1,54 @@
+using System;
+using System.Linq;
+namespace RealEstateListingManagement;
+
+public class RealEstateApp
+{
+    private List<IRealEstateListing> listings;
+    
+    public RealEstateApp()
+    {
+        listings=new List<IRealEstateListing>();
+    }
+
+    public void AddListing(IRealEstateListing listing)
+    {
+        listings.Add(listing);
+    }
+
+    public void RemoveListing(int listingID)
+    {
+        IRealEstateListing listtoRemove = listings.FirstOrDefault(n => n.ID == listingID);
+        if (listtoRemove != null)
+        {
+            listings.Remove(listtoRemove);
+        }
+    }
+
+    public void UpdateListing(RealEstateListing listing)
+    {
+        IRealEstateListing oldlisting=listings.FirstOrDefault(n=>n.ID==listing.ID);
+        if (oldlisting != null)
+        {
+            oldlisting.Title=listing.Title;
+            oldlisting.Description=listing.Description;
+            oldlisting.Price=listing.Price;
+            oldlisting.Location=listing.Location;
+        }
+    }
+
+    public List<IRealEstateListing> GetListings()
+    {
+        return listings;
+    }
+
+    public List<IRealEstateListing> GetListingsbyLocation(string Location)
+    {
+        return listings.Where(n=>n.Location.Equals(Location,StringComparison.OrdinalIgnoreCase)).ToList();
+    }
+
+    public List<IRealEstateListing> GetListingsByPriceRange(int minPrice, int maxPrice)
+    {
+        return listings.Where(n=>n.Price>=minPrice && n.Price<=maxPrice).ToList();
+    }
+}

@@ -1,0 +1,23 @@
+using System;
+using System.Linq;
+namespace RealEstateListingManagement;
+
+public class RealEstateListing : IRealEstateListing
+{
+    public int ID { get; set; }
+    public string Title { get; set; }
+    public string Description { get; set; }
+    public int Price { get; set; }
+    public string Location { get; set; }
+
+    public RealEstateListing(int ID,string Title,string Description,int Price,string Location)
+    {
+        this.ID=ID;
+        this.Title=Title;
+        this.Description=Description;
+        this.Price=Price;
+        this.Location=Location;
+    }
+
+
+}

@@ -1,0 +1,21 @@
+using System;
+using System.Collections;
+namespace CollectionPrac;
+
+public class Prac1
+{
+    public static void Run()
+    {
+        List<int> list=new List<int>();
+        list.Add(1);
+        list.Add(2);
+        list.Add(3);
+        list.Add(4);
+        list.Add(5);
+
+        foreach(var item in list)
+        {
+            System.Console.WriteLine(item+" ");
+        }
+    }
+}

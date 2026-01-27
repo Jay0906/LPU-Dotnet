@@ -1,0 +1,59 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace LibraryManagementSystemm;
+
+public class LibrarySystem : ILibrarySystem
+{
+    private Dictionary<IBook,int> _books=new Dictionary<IBook, int>();
+
+    public void AddBook(IBook book,int quantity)
+    {
+        if (_books.ContainsKey(book))
+        {
+            _books[book]+=quantity;
+        }
+        else
+        {
+            _books[book]=quantity;
+        }
+    }
+
+    public void RemoveBook(IBook book,int quantity)
+    {
+        if (_books.ContainsKey(book))
+        {
+            _books[book]-=quantity;
+            if (_books[book] <= 0)
+            {
+                _books.Remove(book);
+            }
+        }
+    }
+
+    public int CalculateTotal()
+    {
+        return _books.Sum(n=>n.Key.Price*n.Value);
+    }
+
+    public List<(string,int)> CategoryTotalPrice()
+    {
+        return _books.GroupBy(n=>n.Key.Category).Select(n=>(n.Key,n.Sum(n=>n.Key.Price*n.Value))).ToList();
+    }
+
+    public List<(string,int,int)> BooksInfo()
+    {
+        return _books.Select(n=>(n.Key.Title,n.Value,n.Key.Price)).ToList();
+    }
+
+    public List<(string,string,int)> CategoryAndAuthorWithCount()
+    {
+        return _books.GroupBy(n=>new { n.Key.Category,n.Key.Author}).Select(n=>(n.Key.Category,n.Key.Author,n.Sum(x=>x.Value))).ToList();
+    }
+
+    public List<(string, int, int)> BookInfo()
+    {
+        throw new NotImplementedException();
+    }
+}

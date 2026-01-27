@@ -1,0 +1,14 @@
+using System;
+
+namespace LibraryManagementSystemm;
+
+public interface ILibrarySystem
+{
+    void AddBook(IBook book,int quantity);
+    void RemoveBook(IBook book,int quantity);
+    int CalculateTotal();
+    List<(string,int)> CategoryTotalPrice();
+    List<(string,int,int)> BookInfo();
+    List<(string,string,int)> CategoryAndAuthorWithCount();
+
+}

@@ -10,7 +10,7 @@ namespace LibraryManagementSystemm
 
             for(int i = 0; i < n; i++)
             {
-                var input=Console.ReadLine().Split();
+                var input=Console.ReadLine().Split(" ");
                 Book b=new Book
                 {
                     Id=int.Parse(input[0]),

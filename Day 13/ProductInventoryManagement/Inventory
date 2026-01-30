@@ -1,0 +1,44 @@
+using System;
+using System.IO.Pipelines;
+
+namespace ProductInventoryManagement;
+
+public class Inventory : IInventory
+{
+    private List<IProduct> products=new List<IProduct>();
+
+    public void AddProduct(IProduct product)
+    {
+        products.Add(product);
+    }
+
+    public void RemoveProduct(IProduct product)
+    {
+        products.Remove(product);
+    }
+
+    public int CalculateTotalValue()
+    {
+        return products.Sum(n=>n.Stock*n.Price);
+    }
+
+    public List<IProduct> GetProductByCategory(string category)
+    {
+        return products.Where(n=>n.Category.Equals(category,StringComparison.OrdinalIgnoreCase)).ToList();
+    }
+
+    public List<(string,int)> GetProductsByCategoryWithCount()
+    {
+        return products.GroupBy(n=>n.Category).Select(n=>(n.Key,n.Count())).ToList();
+    }
+
+    public List<IProduct> SearchProductsByName(string name)
+    {
+        return products.Where(n=>n.Name.Contains(name,StringComparison.OrdinalIgnoreCase)).ToList();
+    }
+
+    public List<(string,List<IProduct>)> GetAllProductByCategory()
+    {
+        return products.GroupBy(n=>n.Category).Select(n=>(n.Key,n.ToList())).ToList();
+    }
+}

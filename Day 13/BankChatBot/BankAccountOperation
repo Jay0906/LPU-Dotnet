@@ -1,0 +1,54 @@
+using System;
+using System.Text.RegularExpressions;
+
+namespace BankChatBot;
+
+public class BankAccountOperation : IBankAccountOperation
+{
+    private decimal balance=0;
+
+    public void Deposit(decimal amount)
+    {
+        balance+=amount;
+    }
+
+    public void Withdraw(decimal amount)
+    {
+        if (balance >= amount)
+        {
+            balance-=amount;
+        }
+    }
+
+    public decimal ProcessOperation(string message)
+    {
+        string msg=message.ToLower();
+
+        decimal amount=0;
+        Match match=Regex.Match(msg,@"\d+");
+
+        if (match.Success)
+        {
+            amount=decimal.Parse(match.Value);
+        }
+
+        if(msg.Contains("see") || msg.Contains("show"))
+        {
+            return balance;
+        }
+
+        if(msg.Contains("deposit") || msg.Contains("put") || msg.Contains("invest") || msg.Contains("transfer"))
+        {
+            Deposit(amount);
+            return balance;
+        }
+
+        if(msg.Contains("Withdraw") || msg.Contains("pull"))
+        {
+            Withdraw(amount);
+            return balance;
+        }
+
+        return balance;
+    }
+}

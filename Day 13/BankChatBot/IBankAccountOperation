@@ -1,0 +1,10 @@
+using System;
+
+namespace BankChatBot;
+
+public interface IBankAccountOperation
+{
+    void Deposit(decimal amount);
+    void Withdraw(decimal amount);
+    decimal ProcessOperation(string message);
+}

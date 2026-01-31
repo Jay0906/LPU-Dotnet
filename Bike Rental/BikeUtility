@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Immutable;
+
+namespace BikeRentalShop;
+
+public class BikeUtility
+{
+    public static SortedDictionary<int,Bike> BikeDetails=new SortedDictionary<int, Bike>();
+    public void AddDetails(string Model, string Brand, int PricePerDay)
+    {
+        int key=BikeDetails.Count+1;
+        Bike b=new Bike
+        {
+            Model=Model,
+            Brand=Brand,
+            PricePerDay=PricePerDay   
+        };
+
+        BikeDetails.Add(key,b);
+    }
+
+    public SortedDictionary<string, List<Bike>> GroupBikesByBrand()
+    {
+        return new SortedDictionary<string, List<Bike>>(
+            BikeDetails.Values.GroupBy(n=>n.Brand).ToDictionary(n=>n.Key,n=>n.ToList())
+        );
+    }
+}

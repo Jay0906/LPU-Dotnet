@@ -1,0 +1,43 @@
+using System;
+
+namespace EmployeeInheritence;
+
+public abstract class Employee
+{
+    public string? Department { get; set; }
+    public string? Name { get; set; }
+    public string? Location { get; set; }
+    public bool isOnVacation { get; set; }
+
+    public Employee(string Department,string Name,string Location)
+    {
+        this.Department=Department;
+        this.Name=Name;
+        this.Location=Location;
+    }
+
+    public string GetDepartment()
+    {
+        return Department;
+    }
+
+    public string GetName()
+    {
+        return Name;
+    }
+
+    public string GetLocation()
+    {
+        return Location;
+    }
+
+    public bool GetStatus()
+    {
+        return isOnVacation;
+    }
+
+    public void SwitchStatus()
+    {
+        isOnVacation=!isOnVacation;
+    }
+}

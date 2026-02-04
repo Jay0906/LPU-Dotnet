@@ -1,0 +1,55 @@
+using System;
+using System.Security.Cryptography;
+
+namespace ECommerceSalesAndInventory;
+
+public class Company : ICompany
+{
+    public int ID { get; set; }
+    public string Name { get; set; }
+    List<ICategory> Categories { get; set; }
+    List<ICategory> ICompany.Categories { get => Categories; set => Categories = value; }
+
+    public Company(int ID,string Name)
+    {
+        this.ID=ID;
+        this.Name=Name;
+        Categories=new List<ICategory>();
+    }
+
+    public void AddCategory(ICategory category)
+    {
+        Categories.Add(category);
+    }
+
+    public string GetTopCategoryNameByProductCount()
+    {
+        return Categories.OrderByDescending(n=>n.Products.Count).First().Name;
+    }
+
+    /*GetProductsBelongingToMultipleCategories()
+    Returns a list of products that appear in more than one category
+    Maintain the order in which products were first added*/
+    public List<IProduct> GetProductBelongingToMultipleCategories()
+    {
+        return Categories.SelectMany(n=>n.Products).GroupBy(n=>n.ID).Where(n=>n.Count()>1).Select(n=>n.First()).ToList();
+    }
+
+    /*GetTopCategoryBySumOfProductPrices()
+    Returns the category name and total price
+    The category with the highest sum of product prices*/
+    public (string name,decimal total) GetTopCategoryBySumOfProductPrices()
+    {
+        var top=Categories.Select(c=>new {c.Name,Total=c.Products.Sum(p=>p.Price)}).OrderByDescending(c=>c.Total).First();
+        return (top.Name,top.Total);
+    }
+
+    /*GetCategoriesWithSumOfProductPrices()
+    Returns a list of tuples:
+    (CategoryName, SumOfPrices)
+    Maintain the order in which categories were added*/
+    public List<(string catName,decimal sumofPrices)> GetCategoriesWithSumOfProductPrices()
+    {
+        return Categories.Select(c=>( c.Name,c.Products.Sum(n=>n.Price))).ToList();
+    }
+}

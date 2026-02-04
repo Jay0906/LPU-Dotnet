@@ -1,0 +1,22 @@
+using System;
+
+namespace ECommerceSalesAndInventory;
+
+public class Category : ICategory
+{
+    public int ID { get; set; }
+    public string Name { get; set; }
+    public List<IProduct> Products{ get; }
+
+    public Category(int ID,string Name)
+    {
+        this.ID=ID;
+        this.Name=Name;
+        Products=new List<IProduct>();
+    }
+
+    public void AddProduct(IProduct product)
+    {
+        Products.Add(product);
+    }
+}

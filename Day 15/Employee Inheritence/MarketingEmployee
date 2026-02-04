@@ -1,0 +1,11 @@
+using System;
+
+namespace EmployeeInheritence;
+
+public class MarketingEmployee : Employee
+{
+    public MarketingEmployee(string Name,string Location) : base("Marketing", Name, Location)
+    {
+        
+    }
+}

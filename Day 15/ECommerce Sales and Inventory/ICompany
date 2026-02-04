@@ -1,0 +1,15 @@
+using System;
+
+namespace ECommerceSalesAndInventory;
+
+public interface ICompany
+{
+    public int ID { get; set; }
+    public string Name { get; set; }
+    List<ICategory> Categories {get; set;}
+    void AddCategory(ICategory category);
+    public string GetTopCategoryNameByProductCount();
+    public List<IProduct> GetProductBelongingToMultipleCategories();
+    public (string name,decimal total) GetTopCategoryBySumOfProductPrices();
+    public List<(string catName,decimal sumofPrices)> GetCategoriesWithSumOfProductPrices();
+}

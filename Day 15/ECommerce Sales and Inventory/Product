@@ -1,0 +1,18 @@
+using System;
+using System.Security.AccessControl;
+
+namespace ECommerceSalesAndInventory;
+
+public class Product : IProduct
+{
+    public int ID { get; set; }
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+
+        public Product(int ID,string Name,decimal Price)
+    {
+        this.ID=ID;
+        this.Name=Name;
+        this.Price=Price;
+    }
+}

@@ -1,0 +1,12 @@
+using System;
+
+namespace ECommerceSalesAndInventory;
+
+public interface ICategory
+{
+    int ID {get; }
+    string Name {get;}
+    List<IProduct> Products {get;}
+
+    void AddProduct(IProduct product);
+}

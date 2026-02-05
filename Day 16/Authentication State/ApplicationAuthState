@@ -1,0 +1,71 @@
+using System;
+
+namespace AuthenticationState;
+
+public class ApplicationAuthState
+{
+    List<string> AllowedLocations=new List<string>();
+    List<User> RegisteredUsers=new List<User>();
+    List<User> UsersLoggedIn=new List<User>();
+
+    public ApplicationAuthState(List<string> AllowedLocations)
+    {
+        this.AllowedLocations=AllowedLocations;
+    }
+
+    public string Register(User user)
+    {
+        if (!RegisteredUsers.Contains(user))
+        {
+            RegisteredUsers.Add(user);
+            return "User Successfully Registered.";
+        }
+        return "User already Registered.";
+    }
+
+    public string LogIn(User user)
+    {
+        User registeredEmail=RegisteredUsers.FirstOrDefault(n=>n.Email.Equals(user.Email));
+
+        if (!RegisteredUsers.Contains(user))
+        {
+            return "User not Registered";
+        }
+        else if (user.IncorrectAttempt > 3)
+        {
+            return "User is Blocked";    
+        }
+        else if (!user.Password.Equals(registeredEmail.Password))
+        {
+            return "Password Wrong";
+        }
+        else if (UsersLoggedIn.Any(n => n.Email == user.Email))
+        {
+            User loggedUser = UsersLoggedIn.First(n => n.Email == user.Email);
+
+            if (loggedUser.Location != user.Location)
+            {
+                return "User logged in from another Location";
+            }
+
+            return "User already Logged in";
+        }
+
+        user.IncorrectAttempt=0;
+        UsersLoggedIn.Add(user);
+        return "User Logged In Successfully";
+    }
+    
+    public string Logout(User user)
+    {
+        User loggedUser=UsersLoggedIn.First(n=>n.Email==user.Email);
+
+        if (loggedUser.Email == user.Email)
+        {
+            UsersLoggedIn.Remove(user);
+            return "User Logged out Successfully";
+        }
+        return "User not Logged in";
+    }
+
+}

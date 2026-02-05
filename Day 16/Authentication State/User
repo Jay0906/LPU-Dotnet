@@ -1,0 +1,22 @@
+using System;
+
+namespace AuthenticationState;
+
+public class User
+{
+    public int Id { get; set; }
+    public string? Email { get; set; }
+    public string? Password { get; set; }
+    public string? Location { get; set; }
+    public int IncorrectAttempt { get; set; }
+
+    public User(int Id,string Email,string Password,string Location)
+    {
+        this.Id=Id;
+        this.Email=Email;
+        this.Password=Password;
+        this.Location=Location;
+    }
+
+    
+}

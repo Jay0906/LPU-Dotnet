@@ -1,0 +1,10 @@
+using System;
+namespace UserInheritence;
+
+public class Moderator : User
+{
+    public Moderator(string name,Gender gender,int age) : base("Moderator", name, gender, age)
+    {
+        
+    }
+}

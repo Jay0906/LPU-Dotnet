@@ -1,0 +1,33 @@
+using System;
+using System.Linq;
+using System.Runtime.InteropServices;
+namespace CarManagement;
+public class Tasks
+{
+    List<Car> cars=null;
+
+    public Tasks(List<Car> cars)
+    {
+        this.cars=cars;
+    }
+
+    public Car MostExpensiveCar()
+    {
+        return cars.OrderByDescending(n=>n.Price).FirstOrDefault();
+    }
+
+    public Car CheapestCar()
+    {
+        return cars.OrderBy(n=>n.Price).FirstOrDefault();
+    }
+
+    public int AveragePriceofCars()
+    {
+        return (int)Math.Round(cars.Average(n=>n.Price));
+    }
+
+    public Dictionary<string,Car> MostExpensiveModelForEachBrand()
+    {
+        return cars.GroupBy(n=>n.Brand).ToDictionary(n=>n.Key,n=>n.OrderByDescending(p=>p.Price).First());
+    }
+}

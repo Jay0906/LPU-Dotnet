@@ -1,0 +1,11 @@
+using System;
+
+namespace UserInheritence;
+
+public class Admin : User
+{
+    public Admin(string name,Gender gender,int age) : base("Admin", name, gender, age)
+    {
+        
+    }
+}

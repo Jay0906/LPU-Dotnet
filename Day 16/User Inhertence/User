@@ -1,0 +1,45 @@
+using System;
+
+namespace UserInheritence;
+
+public enum Gender
+{
+    Male,
+    Female,
+    Other
+}
+public class User
+{
+    public string type { get; set; }
+    public string name { get; set; }
+    public Gender gender { get; set; }
+    public int age { get; set; }
+
+    public User(string type,string name,Gender gender,int age)
+    {
+        this.type=type;
+        this.name=name;
+        this.gender=gender;
+        this.age=age;
+    }
+
+    public new string GetType()
+    {
+        return type;
+    }
+
+    public string GetName()
+    {
+        return name;
+    }
+
+    public Gender GetGender()
+    {
+        return gender;
+    }
+
+    public int GetAge()
+    {
+        return age;
+    }
+}

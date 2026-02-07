@@ -1,0 +1,36 @@
+using System;
+namespace OrderIntakeManager;
+
+public class Order
+{
+    public int OrderId { get; set; }
+    public string? CustomerName { get; set; }
+    public string? Item { get; set; }
+
+    public Stack<Order> AddOrderDetails(int orderId,string customerName,string item)
+    {
+        Order order=new Order();
+            order.OrderId=orderId;
+            order.CustomerName=customerName;
+            order.Item=item;
+
+        Program.orderList.Push(order);
+        return Program.orderList;
+    }
+
+    public string GetOrderDetails()
+    {
+        if (Program.orderList.Count() > 0)
+        {
+            Order res=Program.orderList.Peek();
+            return res.CustomerName+ " "+res.Item+" "+res.OrderId;
+        }
+        return "";
+    }
+
+    public Stack<Order> RemoveOrderDetails()
+    {
+        Program.orderList.Pop();
+        return Program.orderList;
+    }
+}

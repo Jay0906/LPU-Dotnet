@@ -1,0 +1,37 @@
+using System;
+using System.Data;
+
+namespace StudentRecordManagementSystem;
+
+public class StudentUtility
+{
+    public Dictionary<string,string> GetStudentDetails(string id)
+    {
+        var student=Program.studentDetails.Values.FirstOrDefault(n=>n.Id==id);
+
+        if (student == null)
+        {
+            return new Dictionary<string, string>();
+        }
+
+        return new Dictionary<string, string>
+        {
+            {student.Id,student.Name+" "+student.Course}
+        };
+    }
+
+    public Dictionary<string,Student> UpdateStudentMarks(string id,int marks)
+    {
+        var student=Program.studentDetails.Values.FirstOrDefault(n=>n.Id==id);
+
+        if (student == null)
+        {
+            return new Dictionary<string, Student>();
+        }
+        student.Marks=marks;
+        return new Dictionary<string, Student>
+        {
+          {student.Id,student}  
+        };
+    }
+}

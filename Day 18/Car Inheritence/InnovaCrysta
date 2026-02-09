@@ -1,0 +1,18 @@
+using System;
+
+namespace CarInheritence;
+
+public class InnovaCrysta : Car
+{
+    private int mileage { get; set; }
+
+    public InnovaCrysta(int mileage) : base(false, "6")
+    {
+        this.mileage=mileage;
+    }
+
+    public override string getMileage()
+    {
+        return $"has a mileage of around {mileage} kmpl";
+    }
+}

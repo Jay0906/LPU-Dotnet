@@ -1,0 +1,17 @@
+using System;
+
+namespace CarInheritence;
+
+public class WagonR : Car
+{
+    private int mileage { get; set; }
+    public WagonR(int mileage) : base( false,"4")
+    {
+        this.mileage=mileage;
+    }
+
+    public override string getMileage()
+    {
+        throw new NotImplementedException();
+    }
+}

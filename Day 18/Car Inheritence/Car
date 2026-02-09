@@ -1,0 +1,28 @@
+using System;
+
+namespace CarInheritence;
+
+public abstract class Car
+{   
+    public bool isSedan { get; set; }
+    public string Seats { get; set; }
+
+    public Car(bool isSedan,string Seats)
+    {
+        this.isSedan=isSedan;
+        this.Seats=Seats;
+    }
+
+    public bool getIsSedan()
+    {
+        return isSedan;
+    }
+
+    public string getSeats()
+    {
+        return Seats;
+    }
+
+    public abstract string getMileage();
+
+}

@@ -1,0 +1,24 @@
+/*
+Problem:
+Check if the input is exactly 10 digits.
+
+Example:
+Input: "9876543210" → valid
+Input: "98765" → invalid
+*/
+
+using System;
+using System.Text.RegularExpressions;
+namespace RegexExpressions;
+
+public class Prac2
+{
+    public static void Run()
+    {
+        string s=Console.ReadLine()!;
+        string p=@"^\d{10}$";
+
+        bool val=Regex.IsMatch(s,p);
+        System.Console.WriteLine(val);        
+    }
+}

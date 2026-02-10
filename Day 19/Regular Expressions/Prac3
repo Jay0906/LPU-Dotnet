@@ -1,0 +1,24 @@
+/*
+Problem:
+Return true if the string starts with an uppercase letter.
+
+Example:
+"Hello" → true
+"hello" → false
+*/
+
+using System;
+using System.Text.RegularExpressions;
+namespace RegexExpressions;
+
+public class Prac3
+{
+    public static void Run()
+    {
+        string s=Console.ReadLine()!;
+        string p=@"^[A-Z]";
+
+        bool val=Regex.IsMatch(s,p);
+        System.Console.WriteLine(val);
+    }
+}

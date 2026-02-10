@@ -1,0 +1,24 @@
+/*
+Problem:
+Check whether the string ends with a number.
+
+Example:
+"Room9" → true
+"RoomA" → false
+*/
+using System;
+using System.Collections.Concurrent;
+using System.Text.RegularExpressions;
+namespace RegexExpressions;
+
+public class Prac4
+{
+    public static void Run()
+    {
+        string s=Console.ReadLine()!;
+        string p=@"\d$";
+
+        bool val=Regex.IsMatch(s,p);
+        System.Console.WriteLine(val);
+    }
+}

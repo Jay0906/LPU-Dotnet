@@ -1,0 +1,19 @@
+/*
+Problem:
+PIN code must be 6 digits.
+*/
+using System;
+using System.Text.RegularExpressions;
+namespace RegexExpressions;
+
+public class Prac7
+{
+    public static void Run()
+    {
+        string s=Console.ReadLine()!;
+        string p=@"^\d{6}$";
+
+        bool val=Regex.IsMatch(s,p);
+        System.Console.WriteLine(val);
+    }
+}

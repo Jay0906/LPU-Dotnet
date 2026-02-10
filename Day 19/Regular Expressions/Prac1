@@ -1,0 +1,24 @@
+/*Problem:
+Given a string, check whether it contains only numbers.
+
+Example:
+Input: "12345" → true
+Input: "12a45" → false
+*/
+
+using System;
+using System.Text.RegularExpressions;
+
+namespace RegexExpressions;
+
+public class Prac1
+{
+    public static void Run()
+    {
+        string s="12345";
+        string p=@"^\d+$";
+
+        bool isMatch=Regex.IsMatch(s,p);
+        System.Console.WriteLine(isMatch);
+    }
+}

@@ -1,0 +1,23 @@
+/*
+Problem:
+Check whether the given email is valid.
+
+Example:
+"test@gmail.com" → valid
+"test@gmail" → invalid
+*/
+using System;
+using System.Text.RegularExpressions;
+namespace RegexExpressions;
+
+public class Prac5
+{
+    public static void Run()
+    {
+        string s=Console.ReadLine()!;
+        string p=@"^[\w\.-]+@[\w\.-]+\.\w+$";
+        
+        bool val=Regex.IsMatch(s,p);
+        System.Console.WriteLine(val);
+    }
+}

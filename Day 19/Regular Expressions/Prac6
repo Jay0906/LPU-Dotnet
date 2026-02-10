@@ -1,0 +1,21 @@
+/*
+Rules:
+Minimum 8 characters
+At least 1 digit
+At least 1 uppercase letter
+*/
+using System;
+using System.Text.RegularExpressions;
+namespace RegexExpressions;
+
+public class Prac6
+{
+    public static void Run()
+    {
+        string s=Console.ReadLine()!;
+        string p=@"(?=.*[A-Z]).(?=.*[0-9].{8,})$";
+
+        bool val=Regex.IsMatch(s,p);
+        System.Console.WriteLine(val);
+    }
+}

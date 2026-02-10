@@ -1,0 +1,22 @@
+/*
+Problem:
+From "Marks: 90, 85, 78", extract all numbers.
+*/
+using System;
+using System.Text.RegularExpressions;
+namespace RegexExpressions;
+
+public class Prac8
+{
+    public static void Run()
+    {
+        string s="Marks: 90,85,70";
+        string p=@"\d+";
+
+        MatchCollection matches=Regex.Matches(s,p);
+        foreach(Match match in matches)
+        {
+            System.Console.Write(match.Value+" ");            
+        }
+    }
+}

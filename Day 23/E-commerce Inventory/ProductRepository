@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+namespace E_commerceInventorySystem;
+public class ProductRepository<T> where T : IProduct
+{
+    private List<T> _products = new List<T>();
+
+    // TODO:
+    // Implement method to add product with validation
+    // Rule: Product ID must be unique
+    // Rule: Price must be positive
+    // Rule: Name cannot be null or empty
+    // Add to collection if validation passes
+    public void AddProduct(T product)
+    {
+        bool idExists = _products.Any(p => p.Id == product.Id);
+
+        if (product.Name != null && product.Price>0 && idExists)
+        {
+            _products.Add(product);
+        }
+    }
+
+    // TODO:
+    // Create method to find products by predicate
+    // Should return filtered products
+    public IEnumerable<T> FindProducts(Func<T, bool> predicate)
+    {
+        return _products.Where(predicate);
+        
+    }
+
+    // TODO:
+    // Calculate total inventory value
+    // Return sum of all product prices
+    public decimal CalculateTotalValue()
+    {
+        return _products.Sum(n=>n.Price);
+    }
+}

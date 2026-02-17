@@ -1,0 +1,18 @@
+using System;
+
+namespace GenericClassPrac;
+
+public class Prac1<T>
+{
+    public T value;
+    public void GetValue()
+    {
+        Console.WriteLine(value);
+    }
+
+    public void SetValue(T value)
+    {
+        this.value=value;
+    }
+}
+

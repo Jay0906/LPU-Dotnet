@@ -1,0 +1,12 @@
+using System;
+
+namespace E_commerceInventorySystem;
+
+public interface IProduct
+{
+    public int Id { get; }
+    public string? Name { get; }
+    public decimal Price { get; }
+    public Category Category { get; }
+
+}

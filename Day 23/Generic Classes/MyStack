@@ -1,0 +1,29 @@
+using System;
+namespace GenericClassPrac;
+
+public class MyStack<T>
+{
+    private T[] stack;
+    private int top=-1;
+
+    public MyStack(int n)
+    {
+        stack =new T[n];
+    }
+
+    public void push(T item)
+    {
+        stack[++top]=item;
+    }
+
+    public T pop()
+    {
+        return stack[top--];
+    }
+
+    public T peek()
+    {
+        return stack[top];
+    }
+    
+}

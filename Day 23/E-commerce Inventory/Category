@@ -1,0 +1,9 @@
+using System;
+namespace E_commerceInventorySystem;
+public enum Category
+{
+    Electronics,
+    Clothing,
+    Books,
+    Groceries
+}

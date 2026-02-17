@@ -13,12 +13,21 @@ public class ProductRepository<T> where T : IProduct
     // Add to collection if validation passes
     public void AddProduct(T product)
     {
+        if (product == null)
+            throw new ArgumentNullException(nameof(product));
+
         bool idExists = _products.Any(p => p.Id == product.Id);
 
-        if (product.Name != null && product.Price>0 && idExists)
-        {
-            _products.Add(product);
-        }
+        if (string.IsNullOrWhiteSpace(product.Name))
+            throw new ArgumentException("Name cannot be empty");
+
+        if (product.Price <= 0)
+            throw new ArgumentException("Price must be greater than zero");
+
+        if (idExists)
+            throw new InvalidOperationException("Duplicate ID not allowed");
+
+        _products.Add(product);
     }
 
     // TODO:

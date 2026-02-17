@@ -1,0 +1,13 @@
+using System;
+
+namespace GenericClassPrac;
+
+public class Prac4<T>
+{
+    public void Swap(ref T a,ref T b)
+    {
+        T temp=a;
+        a=b;
+        b=temp;
+    }
+}

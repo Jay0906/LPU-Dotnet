@@ -1,0 +1,14 @@
+using System;
+namespace GenericClassPrac;
+
+public class Prac6
+{
+    public T FindMax<T>(T a,T b) where T: IComparable<T>
+    {
+        if (a.CompareTo(b) > 0)
+        {
+            return a;
+        }   
+        return b;
+    }
+}

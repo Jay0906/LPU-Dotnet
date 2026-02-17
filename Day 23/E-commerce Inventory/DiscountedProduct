@@ -1,0 +1,36 @@
+using System;
+namespace E_commerceInventorySystem;
+public class DiscountedProduct<T> where T : IProduct
+{
+    private T _product;
+    private decimal _discountPercentage;
+
+    // TODO:
+    // Initialize with validation
+    // Discount must be between 0 and 100
+    public DiscountedProduct(T product, decimal discountPercentage)
+    {
+        if(discountPercentage>0 && discountPercentage < 100)
+        {
+            _product=product;
+            _discountPercentage=discountPercentage;
+        }
+    }
+
+    // TODO:
+    // Implement calculated price with discount
+    public decimal DiscountedPrice
+    {
+        get
+        {
+            return _product.Price * (1 - _discountPercentage / 100);
+        }
+    }
+
+    // TODO:
+    // Override ToString to show discount details
+    public override string ToString()
+    {
+        return $"{_product.Name} - {_product.Price} - {_discountPercentage} - {DiscountedPrice}";
+    }
+}

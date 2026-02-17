@@ -1,0 +1,19 @@
+using System;
+namespace GenericClassPrac;
+
+public class Prac2<T1,T2>
+{
+    public T1 value1 { get; set; }
+    public T2 value2 { get; set; }
+
+    public Prac2(T1 value1,T2 value2)
+    {
+        this.value1=value1;
+        this.value2=value2;
+    }
+
+    public void Print()
+    {
+        System.Console.WriteLine($"{value1} - {value2}");
+    }
+}

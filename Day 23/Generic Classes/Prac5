@@ -1,0 +1,10 @@
+using System;
+namespace GenericClassPrac;
+
+public class Prac5
+{
+    public void Print<T>(T value)
+    {
+        System.Console.WriteLine(value);
+    }
+}

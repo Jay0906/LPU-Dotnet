@@ -1,0 +1,26 @@
+using System;
+namespace StringFunctions;
+
+public class Prac_3
+{
+    public static void Run()
+    {
+        System.Console.Write("Enter string: ");
+        string[] input=Console.ReadLine()!.Split(" ");
+
+        if (input.Length > 2)
+        {
+            for(int i = 1; i < input.Length - 1; i++)
+            {
+                input[i]=input[i].ToUpper();
+            }
+        }
+        System.Console.Write("Result: ");
+        System.Console.Write(input[input.Length-1]+" ");
+        for(int i = 1; i < input.Length - 1; i++)
+        {
+            System.Console.Write(input[i]+" ");
+        }
+        System.Console.Write(input[0]);
+    }
+}

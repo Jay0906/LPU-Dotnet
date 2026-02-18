@@ -1,0 +1,28 @@
+using System;
+using System.Text;
+namespace StringFunctions;
+
+public class Prac_4
+{
+    public static void Run()
+    {
+        System.Console.Write("Enter string: ");
+        string input=Console.ReadLine()!;
+        string vowels="AEIOUaeiou";
+
+        StringBuilder sb=new StringBuilder();
+        foreach(var item in input.ToCharArray())
+        {
+            if (vowels.Contains(item))
+            {
+                sb.Append(input.IndexOf(item));
+            }
+            else{
+                sb.Append(item);
+            }
+        }
+        string res=sb.ToString();
+        int n=res.Length/2;
+        System.Console.WriteLine($"Result: {res.Substring(n)}{res.Substring(0,n)}");
+    }
+}

@@ -1,0 +1,28 @@
+using System;
+using System.Text;
+using System.Text.RegularExpressions;
+namespace StringFunctions;
+
+public class Prac_2
+{
+    public static void Run()
+    {
+        System.Console.Write("Enter string: ");
+        string input=Console.ReadLine()!;
+
+        HashSet<char> set=new HashSet<char>();
+        StringBuilder sb=new StringBuilder();
+        foreach(char c in input.ToCharArray())
+        {
+            if (!set.Contains(c))
+            {
+                sb.Append(c);
+                set.Add(c);
+            }
+        }
+        string res=sb.ToString();
+        string new_res=Regex.Replace(res,"[0-9]","#");
+        new_res=new string(new_res.Reverse().ToArray());
+        System.Console.WriteLine($"Result: {new_res}");
+    }
+}

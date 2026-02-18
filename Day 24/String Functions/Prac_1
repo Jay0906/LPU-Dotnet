@@ -1,0 +1,42 @@
+using System;
+using System.Text;
+namespace StringFunctions;
+
+public class Prac_1
+{
+    public static void Run()
+    {
+        System.Console.Write("Enter string: ");
+        string[] s=Console.ReadLine()!.Split(" ");
+
+        StringBuilder sb=new StringBuilder();
+        for(int i = 0; i < s.Length; i++)
+        {
+            s[i]=new string(s[i].Reverse().ToArray());
+        }
+
+        for(int i = 0; i < s.Length; i++)
+        {
+            char[] arr=s[i].ToCharArray();
+            for(int j = 0; j < arr.Length; j++)
+            {
+                if (j % 2 == 0)
+                {
+                    arr[j]=char.ToUpper(arr[j]);
+                }
+                else
+                {
+                    arr[j]=char.ToLower(arr[j]);
+                }
+            }
+            s[i]=new string(arr);
+        }
+        foreach(var item in s)
+        {
+            sb.Append(item);
+        }
+        string res=sb.ToString();
+        int n=res.Length-3;
+        System.Console.WriteLine($"Result: {res.Substring(n)}{res.Substring(0,n)}");
+    }
+}

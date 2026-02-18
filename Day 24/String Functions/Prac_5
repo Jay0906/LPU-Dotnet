@@ -1,0 +1,30 @@
+using System;
+using System.Text;
+namespace StringFunctions;
+
+public class Prac_5
+{
+    public static void Run()
+    {
+        System.Console.Write("Enter string: ");
+        string input=Console.ReadLine()!;
+        string vowels="AEIOUaeiou";
+
+        string rev=new string(input.Reverse().ToArray());
+        input+=rev;
+
+        StringBuilder sb=new StringBuilder();
+        foreach(char c in input.ToCharArray())
+        {
+            if(input.IndexOf(c) % 2 == 0)
+            {
+                if (vowels.Contains(c))
+                {
+                    sb.Append(c);
+                }
+            }
+        }
+        string res=sb.ToString();
+        System.Console.WriteLine($"Result: {res}");
+    }
+}

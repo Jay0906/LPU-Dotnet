@@ -1,1 +1,26 @@
 
+using System;
+using System.Text.RegularExpressions;
+
+class EmailValidation
+{
+    public static void Main()
+    {
+        Console.Write("Enter Email: ");
+        string email = Console.ReadLine();
+
+        // Regex Pattern
+        string pattern = @"^[A-Za-z]+\.[A-Za-z]+@[A-Za-z]+\.company\.com$";
+
+        Regex regex = new Regex(pattern);
+
+        if (regex.IsMatch(email))
+        {
+            Console.WriteLine("Valid Email Format");
+        }
+        else
+        {
+            Console.WriteLine("Invalid Email Format");
+        }
+    }
+}

@@ -1,31 +1,57 @@
 @model FlightSearchEngine.Models.SearchViewModel
 
+@{
+    ViewData["Title"] = "Flight Search";
+}
+
 <h2>Flight Search</h2>
 
-<form asp-action="SearchFlights" method="post">
+<form method="post">
     @Html.AntiForgeryToken()
 
     <div>
         <label>Source</label>
-        <select asp-for="Source" asp-items="Model.SourceList">
-            <option value="">Select Source</option>
+        <select asp-for="Source" asp-items="Model.SourceList" class="form-control">
+            <option value="">-- Select Source --</option>
         </select>
+        <span asp-validation-for="Source" class="text-danger"></span>
     </div>
+
+    <br />
 
     <div>
         <label>Destination</label>
-        <select asp-for="Destination" asp-items="Model.DestinationList">
-            <option value="">Select Destination</option>
+        <select asp-for="Destination" asp-items="Model.DestinationList" class="form-control">
+            <option value="">-- Select Destination --</option>
         </select>
+        <span asp-validation-for="Destination" class="text-danger"></span>
     </div>
+
+    <br />
 
     <div>
         <label>Number of Persons</label>
-        <input asp-for="NumberOfPersons" type="number" />
+        <input asp-for="NumberOfPersons" type="number" class="form-control" />
+        <span asp-validation-for="NumberOfPersons" class="text-danger"></span>
     </div>
 
-    <button type="submit" formaction="/Flight/SearchFlights">Search Flights Only</button>
-    <button type="submit" formaction="/Flight/SearchFlightsWithHotels">Search Flights + Hotel</button>
+    <br />
 
-    <div asp-validation-summary="All"></div>
+    <button type="submit" formaction="/Flight/SearchFlights" class="btn btn-success">
+        Search Flights Only
+    </button>
+
+    <button type="submit" formaction="/Flight/SearchFlightsWithHotels" class="btn btn-warning">
+        Search Flights + Hotel
+    </button>
+
+    <br /><br />
+
+    <div asp-validation-summary="All" class="text-danger"></div>
 </form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

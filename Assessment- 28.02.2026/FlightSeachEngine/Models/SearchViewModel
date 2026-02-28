@@ -14,7 +14,7 @@ namespace FlightSearchEngine.Models
         [Required]
         [Range(1, 10)]
         public int NumberOfPersons { get; set; }
-        public SelectList SourceList{ get; set; }
-        public SelectList DestinationList { get; set; }
+        public SelectList? SourceList{ get; set; }
+        public SelectList? DestinationList { get; set; }
     }
 }

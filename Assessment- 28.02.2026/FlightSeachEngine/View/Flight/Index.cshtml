@@ -1,0 +1,31 @@
+@model FlightSearchEngine.Models.SearchViewModel
+
+<h2>Flight Search</h2>
+
+<form asp-action="SearchFlights" method="post">
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label>Source</label>
+        <select asp-for="Source" asp-items="Model.SourceList">
+            <option value="">Select Source</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Destination</label>
+        <select asp-for="Destination" asp-items="Model.DestinationList">
+            <option value="">Select Destination</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Number of Persons</label>
+        <input asp-for="NumberOfPersons" type="number" />
+    </div>
+
+    <button type="submit" formaction="/Flight/SearchFlights">Search Flights Only</button>
+    <button type="submit" formaction="/Flight/SearchFlightsWithHotels">Search Flights + Hotel</button>
+
+    <div asp-validation-summary="All"></div>
+</form>

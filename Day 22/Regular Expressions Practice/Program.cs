@@ -29,7 +29,7 @@ class Program
             string input = Console.ReadLine()!;
 
             bool result = false;
-
+hdhd
             switch (choice)
             {
                 case 1: result = ProductKeyBasic(input); break;

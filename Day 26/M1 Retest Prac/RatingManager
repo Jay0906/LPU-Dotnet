@@ -1,0 +1,128 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class RatingManager
+{
+    // Student → (Course → Rating)
+    Dictionary<string, Dictionary<string,int>> studentRatings =
+        new Dictionary<string, Dictionary<string,int>>();
+
+    // Course → list of (student,rating)
+    Dictionary<string, List<(string student,int rating)>> courseRatings =
+        new Dictionary<string, List<(string,int)>>();
+
+    public void rate(string student,string course,int rating)
+    {
+        // WRITE CODE
+        if (!studentRatings.ContainsKey(student))
+        {
+            studentRatings[student]=new Dictionary<string, int>();
+        }
+        if (!courseRatings.ContainsKey(course))
+        {
+            courseRatings[course]=new List<(string student, int rating)>();
+        }
+        if (!studentRatings[student].ContainsKey(course))
+        {
+            studentRatings[student][course]=rating;
+            courseRatings[course].Add((student,rating));
+        }
+        else if(rating > studentRatings[student][course])
+        {
+            studentRatings[student][course]=rating;
+            for(int i = 0; i < courseRatings[course].Count; i++)
+            {
+                if (courseRatings[course][i].student == student)
+                {
+                    courseRatings[course][i]=(student,rating);
+                }
+            }
+        }
+    }
+
+    public void remove(string student,string course)
+    {
+        // WRITE CODE
+        if (studentRatings.ContainsKey(student) && studentRatings[student].ContainsKey(course))
+        {
+            studentRatings[student].Remove(course);
+
+            if (studentRatings[student].Count == 0)
+            {
+                studentRatings.Remove(student);
+            }
+        }
+
+        if (courseRatings.ContainsKey(course))
+        {
+            courseRatings[course].RemoveAll(x=>x.student==student);
+        }
+    }
+
+    public void top(string course)
+    {
+        // WRITE CODE
+        if(!courseRatings.ContainsKey(course) && courseRatings[course].Count == 0)
+        {
+            Console.WriteLine("No Ratings");
+            return;
+        }
+
+        var max=courseRatings[course].Max(x=>x.rating);
+        foreach( var item in courseRatings[course])
+        {
+            if (max == item.rating)
+            {
+                Console.WriteLine($"{item.student} - {item.rating}");               
+            }
+        }
+    }
+
+    public void avg(string course)
+    {
+        // WRITE CODE
+        if(!courseRatings.ContainsKey(course) && courseRatings[course].Count == 0)
+        {
+            Console.WriteLine("No Ratings");
+            return;
+        }
+        var avg=courseRatings[course].Average(x=>x.rating);
+        Console.WriteLine($"{course} - {avg.ToString("F2")}");
+
+    }
+
+    public void process(List<string> commands)
+    {
+        foreach(var cmd in commands)
+        {
+            string[] p = cmd.Split();
+
+            if(p[0]=="RATE")
+                rate(p[1],p[2],int.Parse(p[3]));
+
+            else if(p[0]=="REMOVE")
+                remove(p[1],p[2]);
+
+            else if(p[0]=="TOP")
+                top(p[1]);
+
+            else if(p[0]=="AVG")
+                avg(p[1]);
+        }
+    }
+    class Program
+    {
+        static void Main()
+        {
+            int N = int.Parse(Console.ReadLine()!);
+            List<string> commands = new List<string>();
+
+            for(int i=0;i<N;i++)
+                commands.Add(Console.ReadLine()!);
+
+            RatingManager manager = new RatingManager();
+            manager.process(commands);
+        }
+    }
+}

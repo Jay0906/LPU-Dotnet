@@ -1,0 +1,55 @@
+CREATE Database CompanyDB;
+USE CompanyDB;
+CREATE SCHEMA hr;
+CREATE TABLE hr.Employees (
+	EmployeeID INT PRIMARY KEY IDENTITY(101,1),
+	Name VARCHAR(30) NOT NULL,
+	Department VARCHAR(20) NOT NULL,
+	Email VARCHAR(50) UNIQUE,
+	Salary DECIMAL(10,2),
+	IsActive BIT,
+	CreatedAt DATETIME
+	);
+
+-- SalaryDetails Table
+CREATE TABLE hr.SalaryDetails(
+    SalaryId INT PRIMARY KEY IDENTITY(1,1),
+    EmployeeID INT NOT NULL,
+    HRA DECIMAL(8,2),
+    DA DECIMAL(8,2),
+    Deductions DECIMAL(8,2),
+    NetSalary DECIMAL(10,2),
+    FOREIGN KEY (EmployeeID) REFERENCES hr.Employees(EmployeeID)
+);
+
+	INSERT INTO hr.Employees( Name, Department, Email, Salary,IsActive,CreatedAt)
+VALUES ('Ambi','IT','ambijayaprakash@gmail.com', 60000,1,GETDATE());
+
+Select* from hr.Employees;
+select* from hr.SalaryDetails;
+
+Delete from hr.Employees where EmployeeID=101;
+
+INSERT INTO hr.Employees 
+(Name, Department, Email, Salary, IsActive, CreatedAt)
+VALUES
+('John', 'IT', 'john@gmail.com', 50000, 1, GETDATE()),
+('Alice', 'HR', 'alice@gmail.com', 60000, 1, GETDATE()),
+('Bob', 'Finance', 'bob@gmail.com', 55000, 1, GETDATE()),
+('David', 'IT', 'david@gmail.com', 70000, 0, GETDATE()),
+('Emma', 'HR', 'emma@gmail.com', 65000, 1, GETDATE());
+
+INSERT INTO hr.SalaryDetails
+(EmployeeID, HRA, DA, Deductions, NetSalary)
+VALUES
+(101, 5000, 3000, 2000, 56000),
+(102, 6000, 3500, 2500, 67000),
+(103, 5500, 3200, 2200, 61500),
+(104, 7000, 4000, 3000, 78000),
+(105, 6500, 3700, 2700, 72000);
+
+DROP TABLE hr.Salarydetails;
+
+Select* from hr.Employees WHERE Department='IT';
+
+select* from hr.Employees where name like '%a%';

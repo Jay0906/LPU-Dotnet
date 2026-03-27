@@ -1,2 +1,144 @@
-dhdh
-asljnca
+use CompanyDB;
+select top 1* from hr.Employees order by salary asc;
+
+select sum(NetSalary) as TotalSalary from hr.SalaryDetails;
+
+INSERT INTO hr.Employees 
+(Name,Department,Email,Salary,IsActive,CreatedAt)
+VALUES
+('Rahul','IT','rahul@gmail.com',72000,1,GETDATE());
+
+INSERT INTO hr.Employees
+(Name,Department,Email,Salary,IsActive,CreatedAt)
+VALUES
+('Sneha','HR','sneha@gmail.com',58000,1,GETDATE());
+
+select* from hr.Employees;
+
+SELECT* from hr.Employees WHERE Name='Rahul';
+
+SELECT* FROM hr.Employees WHERE salary>50000 AND salary<70000;
+
+SELECT e.Name,e.Department,s.NetSalary
+FROM hr.Employees e JOIN hr.SalaryDetails s
+ON e.EmployeeID=s.EmployeeID;
+
+SELECT* FROM hr.Employees WHERE Name LIKE 's%';
+
+UPDATE hr.Employees
+SET Salary=80000
+WHERE Name='Rahul';
+
+INSERT INTO hr.SalaryDetails
+(EmployeeID, HRA, DA, Deductions, NetSalary)
+VALUES
+(106, 6000, 4000, 3000, 77000);
+
+SELECT* FROM hr.Employees;
+
+UPDATE hr.Employees
+SET IsActive=0
+WHERE Name='sneha';
+
+UPDATE hr.SalaryDetails
+SET NetSalary=85000
+WHERE EmployeeID=( SELECT EmployeeID FROM hr.Employees WHERE Name='Rahul');
+
+SELECT* from hr.SalaryDetails;
+
+DELETE FROM hr.Employees
+WHERE EmployeeID=(SELECT EmployeeID FROM hr.Employees WHERE Name='sneha');
+
+DELETE FROM hr.Employees WHERE Name='sneha';
+
+DELETE FROM hr.SalaryDetails WHERE EmployeeID=(SELECT EmployeeID FROM hr.Employees WHERE IsActive=0);
+
+DELETE FROM hr.Employees WHERE IsActive=0;
+
+SELECT e.Name,s.NetSalary
+FROM hr.Employees e
+JOIN hr.SalaryDetails s
+ON e.EmployeeID=s.EmployeeID
+WHERE s.NetSalary>65000;
+
+SELECT e.Department, AVG(s.NetSalary) AS AvgSalary
+FROM hr.Employees e
+JOIN hr.SalaryDetails s
+ON e.EmployeeID=s.EmployeeID
+GROUP BY Department;
+
+SELECT Department, COUNT(*) AS EmpCount FROM hr.Employees GROUP BY Department;
+
+SELECT e.Department, AVG(s.NetSalary) AS AvgSalary
+FROM hr.Employees e
+JOIN hr.SalaryDetails s
+ON e.EmployeeID=s.EmployeeID
+GROUP BY Department
+HAVING AVG(s.NetSalary) > 40000;
+
+-- SalaryDetails Table
+CREATE TABLE hr.SalaryDetails(
+    SalaryId INT PRIMARY KEY IDENTITY(1,1),
+    EmployeeID INT NOT NULL,
+    HRA DECIMAL(8,2),
+    DA DECIMAL(8,2),
+    Deductions DECIMAL(8,2),
+    NetSalary DECIMAL(10,2),
+    FOREIGN KEY (EmployeeID) REFERENCES hr.Employees(EmployeeID)
+);
+
+DROP TABLE hr.SalaryDetails;
+
+INSERT INTO hr.SalaryDetails
+(EmployeeID, HRA, DA, Deductions, NetSalary)
+VALUES
+(101, 5000, 3000, 2000, 56000),
+(102, 6000, 3500, 2500, 67000),
+(103, 5500, 3200, 2200, 61500),
+(105, 7000, 4000, 3000, 78000),
+(106, 6500, 3700, 2700, 72000)
+
+USE master;
+DROP TABLE hr.SalaryDetails;
+
+SELECT * FROM hr.Employees;
+
+SELECT TOP 1 e.Department, SUM(s.NetSalary) AS TotalSalary
+FROM hr.Employees e
+JOIN hr.SalaryDetails s
+ON e.EmployeeID=s.EmployeeID
+GROUP BY e.Department
+ORDER BY TotalSalary DESC;
+
+SELECT e.Name,s.NetSalary
+FROM hr.Employees e
+JOIN hr.SalaryDetails s
+ON e.EmployeeID=s.EmployeeID
+WHERE s.NetSalary>(
+    SELECT AVG(NetSalary) FROM hr.SalaryDetails);
+
+SELECT e.Name,s.NetSalary,
+CASE   
+    WHEN s.NetSalary>70000 THEN 'High'
+    WHEN s.NetSalary>50000 THEN 'Medium'
+    ELSE 'LOW'
+END AS SalaryLevel
+FROM hr.Employees e
+JOIN hr.SalaryDetails s
+ON e.EmployeeID=s.EmployeeID;
+
+SELECT e.Name, (s.HRA+s.DA-s.Deductions) AS Salary
+FROM hr.Employees e
+JOIN hr.SalaryDetails s
+ON e.EmployeeID=s.EmployeeID;
+
+SELECT e.Name,e.Department,s.NetSalary
+FROM hr.Employees e
+JOIN hr.SalaryDetails s
+ON e.EmployeeID=s.EmployeeID
+WHERE s.NetSalary=(
+    SELECT MAX(s2.NetSalary) AS MaxSalary
+    FROM hr.Employees e2
+    JOIN hr.SalaryDetails s2
+    ON e2.EmployeeID=s2.EmployeeID
+    WHERE e2.Department=e.Department);

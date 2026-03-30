@@ -1,0 +1,23 @@
+using System;
+using System.Text.RegularExpressions;
+
+namespace RegexPrac;
+
+public class Prac1
+{
+    public static void Run()
+    {
+        string s=Console.ReadLine()!;
+        string pattern=@"^[A-Za-z0-9]+\.[A-Za-z0-9]+@(Company|HR|IT|Finance)\.[a-z]{1,3}$";
+        bool flag=Regex.IsMatch(s,pattern);
+
+        if (flag)
+        {
+            Console.WriteLine("ID Valid");
+        }
+        else
+        {
+            Console.WriteLine("ID Invalid");
+        }
+    }
+}

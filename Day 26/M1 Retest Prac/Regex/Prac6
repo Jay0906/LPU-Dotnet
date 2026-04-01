@@ -1,0 +1,24 @@
+using System;
+using System.Text.RegularExpressions;
+
+namespace RegexPrac;
+
+public class Prac6
+{
+    public static void Run()
+    {
+        System.Console.Write("Enter the text: ");
+        string s=Console.ReadLine()!;
+        string pattern=@"^[A-Za-z][A-Za-z0-9_]{4,10}[A-Za-z0-9]$";
+        bool flag=Regex.IsMatch(s,pattern);
+
+        if (flag)
+        {
+            Console.WriteLine("ID Valid");
+        }
+        else
+        {
+            Console.WriteLine("ID Invalid");
+        }
+    }
+}

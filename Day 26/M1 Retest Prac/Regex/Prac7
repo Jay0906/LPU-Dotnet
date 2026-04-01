@@ -1,0 +1,24 @@
+using System;
+using System.Text.RegularExpressions;
+
+namespace RegexPrac;
+
+public class Prac7
+{
+    public static void Run()
+    {
+        System.Console.Write("Enter the text: ");
+        string s=Console.ReadLine()!;
+        string pattern=@"^[A-Z]{3}-[0-9]{2}#(A|B)$";
+        bool flag=Regex.IsMatch(s,pattern);
+
+        if (flag)
+        {
+            Console.WriteLine("ID Valid");
+        }
+        else
+        {
+            Console.WriteLine("ID Invalid");
+        }
+    }
+}
